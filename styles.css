@@ -1,0 +1,987 @@
+/* =========================================
+   THEME TOKENS (COLORS & TYPOGRAPHY)
+   ========================================= */
+   :root {
+    /* Minimal Mist Greys */
+    --grey-1: oklch(99% 0.01 100);   /* near white */
+    --grey-2: oklch(96% 0.01 100);   /* light mist */
+    --grey-3: oklch(88% 0.01 100);   /* soft silver */
+    --grey-4: oklch(75% 0.02 100);   /* cool grey */
+    --grey-5: oklch(55% 0.02 100);   /* medium grey */
+    --grey-6: oklch(40% 0.02 100);   /* deep neutral */
+    --grey-7: oklch(30% 0.02 100);   /* slate grey */
+    --grey-8: oklch(20% 0.02 100);   /* charcoal */
+    --grey-9: oklch(10% 0.02 100);   /* almost black */
+  
+    /* Accent (Soft Minimal Blue) */
+    --accent-primary: #1C05B3;          /* primary blue */
+    --accent-secondary: oklch(70% 0.1 250); /* lighter steel blue */
+  
+    /* Typography */
+    --body-font: 'Inter', sans-serif;
+    --heading-font: 'Playfair Display', serif;
+  }
+  
+  
+  /* =========================================
+     GLOBAL ELEMENT STYLES
+     ========================================= */
+  body {
+    background-image: url('../images/Pattern.jpg');
+    background-size: contain;
+    color: var(--grey-9);
+    font-family: var(--body-font);
+    font-size: 1rem;
+    line-height: 1.6rem;
+    margin: 0;
+    padding: 0;
+   
+  }
+
+  
+
+  
+    
+  h1, h2, h3 {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    color: var(--grey-9);
+    margin-block: 1.5rem;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  
+  p {
+    font-size: 1rem;
+    margin-block: 0.75rem;
+  }
+  
+  /* Limit paragraph line length in main sections */
+  main > section > p {
+    max-width: 60ch;
+    margin-inline: auto;
+  }
+  
+  a {
+    color: var(--accent-primary);
+    text-decoration: none;
+  }
+  
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+  
+  
+  /* =========================================
+     NAVIGATION BAR
+     ========================================= */
+  .navbar {
+    background: var(--grey-2);
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1rem oklch(0% 0 0 / 0.05);
+    backdrop-filter: blur(10px);
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    padding-inline: 1.5rem;
+    padding-block: 0.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .logo {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-links a {
+    color: var(--grey-8);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .nav-links a:hover,
+  .nav-links a:focus {
+    color: var(--accent-primary);
+  }
+  
+  /* Active page indicator */
+  .nav-links a.active {
+    border-bottom: 2px solid var(--accent-primary);
+  }
+  
+  /* Contact button (anchor for popover) */
+  .btn-nav {
+    background: var(--accent-primary);
+    color: var(--grey-1);
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-nav:hover {
+    background: var(--accent-secondary);
+    color: var(--grey-1);
+  }
+  
+  /* Hamburger toggle (mobile) */
+  .nav-toggle {
+    display: none; /* hide checkbox itself */
+  }
+  
+  .nav-toggle-label {
+    display: none;
+    color: var(--accent-primary);
+    font-size: 2rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  
+  /* =========================================
+     NAV: RESPONSIVE BEHAVIOUR
+     ========================================= */
+  @media (max-width: 700px) {
+    .nav-toggle-label {
+      display: block; /* show ☰ icon */
+    }
+  
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      background: var(--grey-2);
+      position: absolute;
+      top: 3.5rem;
+      right: 1rem;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      text-align: right;
+      z-index: 1000;
+      box-shadow: 0 0.5rem 1rem oklch(0% 0 0 / 0.1);
+    }
+  
+    /* Show menu when checkbox is checked */
+    #nav-toggle:checked ~ .nav-links {
+      display: flex;
+      animation: fadeIn 0.3s ease-in;
+    }
+  
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  }
+  
+  
+  /* =========================================
+     HEADER
+     ========================================= */
+  header {
+    /* Matches card style across the site */
+    background: var(--grey-2);
+    color: var(--grey-9);
+    text-align: center;
+    padding-block: 3rem;
+    padding-inline: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1rem oklch(0% 0 0 / 0.05);
+    max-width: 900px;
+    margin-inline: auto;
+    margin-block: 2rem;
+  }
+  
+  header h1 {
+    margin-block-end: 1rem;
+    font-size: 2.5rem;
+    color: var(--accent-primary);
+  }
+  
+  header h2 {
+    margin-block-start: 0;
+    font-size: 1.5rem;
+    color: var(--grey-7);
+  }
+  
+  
+  /* =========================================
+     GENERIC SECTIONS
+     ========================================= */
+  section {
+    background: var(--grey-2);
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1rem oklch(0% 0 0 / 0.05);
+    margin-block: 3rem;
+    padding-inline: 1.5rem;
+    padding-block: 2rem;
+    max-width: 1000px;
+    margin-inline: auto;
+    text-align: center;
+  }
+  
+  section h2 {
+    color: var(--accent-primary);
+    margin-block-end: 1rem;
+  }
+  
+  
+  /* =========================================
+     RESUME PAGE LAYOUT
+     ========================================= */
+  body.resume main {
+    max-width: 800px;
+    margin-inline: auto;
+    text-align: center;
+    padding-inline: 1.5rem;
+  }
+  
+  body.resume main section {
+    background: var(--grey-2);
+    border: none;
+    border-radius: 0.75rem;
+    padding: 2rem 1.5rem;
+    margin-block: 2rem;
+    box-shadow: 0 0.5rem 1rem oklch(0% 0 0 / 0.05);
+  }
+  
+  body.resume section h2,
+  body.resume section h3,
+  body.resume section p,
+  body.resume section a {
+    text-align: center;
+    margin-inline: auto;
+  }
+  
+  body.resume main > section > p {
+    max-width: 60ch;
+    margin-inline: auto;
+    line-height: 1.7;
+  }
+  
+  /* Inner sections (sub-sections) keep layout simple */
+  body.resume section section {
+    margin-block: 1.5rem;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+  }
+ 
+  
+  
+  /* =========================================
+     PROJECTS GRID & CARDS
+     ========================================= */
+  
+  /* Projects grid layout */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* mobile first */
+    gap: 2rem;
+    margin-block: 4rem;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  
+  @media (min-width: 600px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  
+  @media (min-width: 900px) {
+    .projects-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  
+  /* Project card base styles with hover glow */
+  .card {
+    position: relative;
+    background: var(--grey-2);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    box-shadow:
+      0 0.3rem 0.6rem oklch(0% 0 0 / 0.04),
+      0 0.1rem 0.25rem oklch(0% 0 0 / 0.03);
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease,
+      background 0.35s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-7px);
+  
+    /* Slight brightening on hover */
+    background: color-mix(in oklch, var(--grey-2) 90%, white 10%);
+  
+    /* Blue glow + soft white lift */
+    box-shadow:
+      0 1.5rem 3rem rgba(28, 5, 179, 0.24),
+      0 0.6rem 1.2rem rgba(28, 5, 179, 0.16),
+      0 0.3rem 0.6rem rgba(255, 255, 255, 0.35);
+  }
+  
+  .card img {
+    max-inline-size: 100%;
+    display: block;
+    border-radius: 0.5rem;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  
+  .card h3 {
+    font-size: 1.25rem;
+    margin: 0.5rem 0 0;
+    color: var(--grey-9);
+  }
+  
+  .card p {
+    margin: 0.25rem 0 0.75rem;
+    color: var(--grey-7);
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+  
+  .card a {
+    display: inline-block;
+    margin-top: auto;
+    padding: 0.75rem 1.25rem;
+    background: var(--accent-primary);
+    color: var(--grey-1);
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    line-height: 1;
+    transition: background 0.3s ease;
+  }
+  
+  .card a:hover {
+    background: var(--accent-secondary);
+  }
+  
+  
+  /* =========================================
+     FOOTER
+     ========================================= */
+  footer {
+    background: var(--grey-2);
+    color: var(--grey-8);
+    text-align: center;
+    padding-block: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1rem oklch(0% 0 0 / 0.05);
+    max-width: 1000px;
+    margin-inline: auto;
+    margin-top: 3rem;
+  }
+  
+  footer a {
+    color: var(--accent-primary);
+  }
+  
+  footer ul {
+    list-style: none;
+    padding: 0;
+    margin-block-start: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  footer img {
+    inline-size: 24px;
+    block-size: 24px;
+  }
+  
+  
+  /* =========================================
+     CONTACT POPOVER
+     ========================================= */
+  #contact-popover {
+    margin: 0;
+    inset: auto;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background: var(--grey-2);
+    color: var(--grey-9);
+    box-shadow: 0 0 2rem oklch(0% 0 0 / 0.3);
+    min-inline-size: 320px;            /* minimum width */
+    max-inline-size: min(92vw, 480px); /* avoid viewport overflow */
+    overflow: auto;                    /* scroll if taller than space */
+    overscroll-behavior: contain;
+    position: fixed;
+    inset-inline-start: anchor(--contact-btn bottom);
+    inset-inline-end: anchor(--contact-btn inline-end);
+    translate: 0 0.5rem;
+    container-type: inline-size;
+    container-name: popover;
+    box-sizing: border-box;
+    z-index: 9999;
+  }
+  
+  #contact-popover:popover-open {
+    display: block;
+  }
+  
+  #contact-popover::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Fallback layout if anchor positioning isn't supported */
+  @supports not (position-anchor: --x) {
+    #contact-popover {
+      margin: 0;
+      inset: auto;
+      position: fixed;
+      top: 4rem;   /* below navbar */
+      right: 1rem; /* top-right corner */
+      translate: 0;
+      min-inline-size: 320px;
+      max-inline-size: min(92vw, 480px);
+    }
+  }
+  
+  .contact-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .contact-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      border-radius 0.25s ease;
+  }
+  
+  .contact-photo:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 18px oklch(0% 0 0 / 0.18);
+    border-radius: 45%;
+  }
+  
+  .contact-info h3 {
+    margin: 0;
+    font-family: var(--heading-font);
+    font-size: 1.25rem;
+    color: var(--accent-primary);
+  }
+  
+  .contact-info p {
+    margin-block: 0.5rem;
+    font-family: var(--body-font);
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--grey-8);
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    color: var(--accent-primary);
+  }
+  
+  
+  /* =========================================
+     CONTACT POPOVER CONTAINER QUERIES
+     ========================================= */
+  @container popover (max-width: 599px) {
+    #contact-popover {
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+      padding: 2rem;
+      max-width: none;
+    }
+  
+    .contact-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .contact-photo {
+      width: 150px;
+      height: 150px;
+    }
+  
+    .contact-info .bio {
+      display: block;
+    }
+  }
+  
+  
+  /* =========================================
+     LOGO & NAV ANIMATIONS
+     ========================================= */
+  
+  /* Logo intro + hover pulse */
+  .logo {
+    animation: logoIntro 1.2s ease-out forwards;
+  }
+  
+  @keyframes logoIntro {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .logo:hover {
+    animation: logoPulse 1s ease-in-out;
+  }
+  
+  @keyframes logoPulse {
+    0%, 100% { transform: scale(1);   color: var(--accent-primary); }
+    50%      { transform: scale(1.1); color: var(--accent-secondary); }
+  }
+  
+  /* Nav links fade up on load */
+  .nav-links a {
+    opacity: 0;
+    transform: translateY(6px);
+    animation: navFadeUp 0.6s ease-out forwards;
+  }
+  
+  .nav-links a:nth-child(1) { animation-delay: 0.2s; }
+  .nav-links a:nth-child(2) { animation-delay: 0.4s; }
+  .nav-links a:nth-child(3) { animation-delay: 0.6s; }
+  
+  @keyframes navFadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Nav underline highlight effect */
+  .nav-links a {
+    position: relative;
+    color: var(--grey-8);
+    padding-inline: 0.25rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: -1;
+    transition: transform 0.4s ease;
+    border-radius: 0.2rem;
+    opacity: 0.08;
+  }
+  
+  .nav-links a:hover::before,
+  .nav-links a:focus::before {
+    transform: scaleX(1);
+  }
+  
+  .nav-links a:hover,
+  .nav-links a:focus {
+    color: var(--accent-primary);
+  }
+  
+  /* Active state (kept here too for clarity with animation block) */
+  .nav-links a.active {
+    border-bottom: 2px solid var(--accent-primary);
+  }
+  
+  
+  /* =========================================
+     BUTTON HOVER ANIMATIONS
+     ========================================= */
+  .btn-nav,
+  .card a {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    background: var(--accent-primary);
+    color: var(--grey-1);
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .btn-nav::before,
+  .card a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent-secondary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    z-index: -1;
+    opacity: 0.25;
+  }
+  
+  .btn-nav:hover::before,
+  .btn-nav:focus::before,
+  .card a:hover::before,
+  .card a:focus::before {
+    transform: scaleX(1);
+  }
+  
+  .btn-nav:hover,
+  .card a:hover {
+    transform: translateY(-3px);
+    color: var(--grey-1);
+  }
+  
+  .btn-nav:focus,
+  .card a:focus {
+    outline: none;
+    color: var(--grey-1);
+  }
+  
+  
+  /* =========================================
+     ANIMATIONS PAGE GRID
+     ========================================= */
+  .anim-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  
+  @media (max-width: 700px) {
+    .anim-grid { grid-template-columns: 1fr; }
+  }
+  
+  .anim-cell {
+    background: var(--grey-2);
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1rem oklch(0% 0 0 / 0.05);
+    padding: 1.25rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .anim-cell h3 {
+    margin-block: 0.75rem 0.25rem;
+    color: var(--accent-primary);
+  }
+  
+  .anim-cell p {
+    margin-block: 0 0.75rem;
+    color: var(--grey-7);
+  }
+  
+  .anim-cell .stage {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(135deg, var(--grey-1), var(--grey-3));
+    box-shadow: inset 0 0 0.75rem oklch(0% 0 0 / 0.05);
+  }
+  
+  /* Anim cell 1: masked orb */
+  .cell-1 .mask-orb {
+    position: absolute;
+    inset: -10%;
+    background:
+      radial-gradient(60% 60% at 30% 30%, oklch(85% 0.1 250), transparent 60%),
+      radial-gradient(60% 60% at 70% 70%, color-mix(in oklch, var(--accent-primary) 70%, white 30%), transparent 60%);
+    filter: saturate(1.2) brightness(1.02);
+  }
+  
+  .cell-1 .mask-orb {
+    -webkit-mask: radial-gradient(45% 45% at var(--mx, 50%) var(--my, 50%), #000 62%, transparent 64%);
+            mask: radial-gradient(45% 45% at var(--mx, 50%) var(--my, 50%), #000 62%, transparent 64%);
+    animation: maskOrbit 6s ease-in-out infinite alternate;
+  }
+  
+  @keyframes maskOrbit {
+    0%   { --mx: 25%; --my: 30%; }
+    50%  { --mx: 75%; --my: 30%; }
+    100% { --mx: 60%; --my: 70%; }
+  }
+  
+  /* Anim cell 2: blur blobs */
+  .cell-2 .blur-blob {
+    position: absolute;
+    width: 38%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    left: 10%;
+    top: 18%;
+    background: radial-gradient(circle at 40% 40%, var(--accent-primary), oklch(80% 0.12 250));
+    filter: blur(8px) hue-rotate(0deg) saturate(1.25);
+    animation: blobDrift 7s ease-in-out infinite;
+  }
+  
+  .cell-2 .blur-blob.b2 {
+    position: absolute;
+    width: 38%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    right: 10%;
+    bottom: 15%;
+    background: radial-gradient(circle at 60% 60%, var(--accent-secondary), oklch(88% 0.06 250));
+    filter: blur(8px);
+    animation: blobDrift 7s ease-in-out infinite;
+    animation-delay: 0.6s;
+  }
+  
+  @keyframes blobDrift {
+    0%   { transform: translate(0, 0) scale(1);    filter: blur(8px) hue-rotate(0deg)   saturate(1.25); }
+    50%  { transform: translate(12%, -6%) scale(1.08); filter: blur(10px) hue-rotate(35deg) saturate(1.35); }
+    100% { transform: translate(0, 0) scale(1);    filter: blur(8px) hue-rotate(0deg)   saturate(1.25); }
+  }
+  
+  /* Anim cell 3: spinning blend rings */
+  .cell-3 .blend-ring {
+    position: absolute;
+    inset: 15%;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    background: conic-gradient(
+      from 0turn,
+      color-mix(in oklch, var(--accent-primary) 75%, white 25%),
+      transparent 60%
+    );
+    animation: ringSpin 10s linear infinite;
+    opacity: 0.7;
+  }
+  
+  .cell-3 .blend-ring.r2 {
+    inset: 25%;
+    animation-duration: 12s;
+  }
+  
+  .cell-3 .blend-ring.r3 {
+    inset: 35%;
+    animation-duration: 14s;
+    opacity: 0.55;
+  }
+  
+  @keyframes ringSpin {
+    from { transform: rotate(0turn); }
+    to   { transform: rotate(1turn); }
+  }
+  
+  
+  /* =========================================
+     SVG ANIMATION SECTION
+     ========================================= */
+  .svg-hero {
+    padding-block: 1rem;
+    background: var(--grey-1, #fdfafa); /* soft minimal background */
+  }
+  
+  .svg-hero .page-wrapper {
+    max-inline-size: 960px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  
+  .svg-hero svg {
+    display: block;
+    max-inline-size: 100%;
+    margin-inline: auto;
+  }
+  
+  
+  /* =========================================
+     SVG GLOBAL SETTINGS & KEYFRAMES
+     ========================================= */
+  
+  /* Extra SVG root variables */
+  :root {
+    --svg-load-delay: 0.7s; /* delay so animation waits for page load */
+  }
+  
+  /* Ensure transforms behave consistently on SVG elements */
+  svg * {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  
+  /* Soft floating motion for big shapes */
+  @keyframes float-soft {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+  }
+  
+  /* Subtle floating for smaller objects */
+  @keyframes float-soft-small {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-4px); }
+    100% { transform: translateY(0); }
+  }
+  
+  /* Gentle sway of the girl */
+  @keyframes swing-body {
+    0%   { transform: rotate(-2deg) translateY(0); }
+    50%  { transform: rotate(2deg) translateY(-4px); }
+    100% { transform: rotate(-2deg) translateY(0); }
+  }
+  
+  /* Juggle motion for left objects */
+  @keyframes juggle-left {
+    0%   { transform: translateY(12px) rotate(-4deg); }
+    50%  { transform: translateY(-10px) rotate(4deg); }
+    100% { transform: translateY(12px) rotate(-4deg); }
+  }
+  
+  /* Juggle motion for right objects (rectangle) */
+  @keyframes juggle-right {
+    0%   { transform: translateY(10px) rotate(4deg); }
+    50%  { transform: translateY(-12px) rotate(-4deg); }
+    100% { transform: translateY(10px) rotate(4deg); }
+  }
+  
+  /* Slide-in effect for the triangle bar */
+  @keyframes slide-in-up {
+    0%   { transform: translateY(30px); opacity: 0; }
+    100% { transform: translateY(0);   opacity: 1; }
+  }
+  
+  /* Stars twinkle animation */
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50%      { opacity: 1;   transform: scale(1.35); }
+  }
+  
+  /* Blue circle rolling across the triangle */
+  @keyframes roll-left-right {
+    0%   { transform: translateX(-35px) rotate(0deg); }
+    50%  { transform: translateX(35px)  rotate(160deg); }
+    100% { transform: translateX(-35px) rotate(360deg); }
+  }
+  
+  /* Upside-down balancing wobble of the horseshoe */
+  @keyframes horseshoe-upside-wobble {
+    0%   { transform: translateY(-6px) rotateZ(170deg) rotateX(0deg); }
+    25%  { transform: translateY(-2px) rotateZ(185deg) rotateX(12deg); }
+    50%  { transform: translateY(2px)  rotateZ(190deg) rotateX(0deg); }
+    75%  { transform: translateY(-2px) rotateZ(175deg) rotateX(-10deg); }
+    100% { transform: translateY(-6px) rotateZ(170deg) rotateX(0deg); }
+  }
+  
+  
+  /* =========================================
+     SVG: APPLY ANIMATIONS TO ELEMENTS
+     ========================================= */
+  
+  /* Background cloud floats slowly */
+  #cloud {
+    animation: float-soft 9s ease-in-out var(--svg-load-delay) infinite;
+  }
+  
+  /* Girl character sway motion */
+  #girl {
+    animation: swing-body 6s ease-in-out calc(var(--svg-load-delay) + 0.2s) infinite;
+  }
+  
+  /* Left pink circle juggle bounce */
+  #circle_pink {
+    animation: juggle-left 3.8s ease-in-out calc(var(--svg-load-delay) + 0.4s) infinite;
+  }
+  
+  /* Yellow rectangle gently juggles (no flip) */
+  #rectangle {
+    animation:
+      juggle-right 4s ease-in-out
+      calc(var(--svg-load-delay) + 0.4s)
+      infinite;
+  }
+  
+  /* Horseshoe: upside down + wobbly balancing */
+  #horseshoe {
+    animation:
+      horseshoe-upside-wobble 4.8s cubic-bezier(0.35, 0, 0.25, 1)
+      calc(var(--svg-load-delay) + 0.8s)
+      infinite;
+  }
+  
+  /* Pink triangle slides in then floats */
+  #Triangle {
+    opacity: 0;
+    animation:
+      slide-in-up 0.9s cubic-bezier(0.22, 0.61, 0.36, 1)
+      calc(var(--svg-load-delay) + 0.3s) forwards,
+      float-soft-small 7s ease-in-out calc(var(--svg-load-delay) + 1.4s) infinite;
+  }
+  
+  /* Blue circle rolling left and right */
+  #Circle_blue {
+    animation:
+      roll-left-right 4.2s cubic-bezier(0.35, 0, 0.25, 1)
+      calc(var(--svg-load-delay) + 0.5s)
+      infinite;
+  }
+  
+  /* Floating shapes around foot */
+  #circle_yellow {
+    animation: bounce-foot-circle 2.4s ease-in-out calc(var(--svg-load-delay) + 0.6s) infinite;
+  }
+  
+  #square {
+    animation: bounce-foot-square 2.4s ease-in-out calc(var(--svg-load-delay) + 0.7s) infinite;
+  }
+  
+  /* Star twinkles */
+  #stars .st7,
+  #stars .st8,
+  #stars .st11,
+  #stars polygon,
+  #stars line,
+  #stars circle {
+    animation: twinkle 2.7s ease-in-out calc(var(--svg-load-delay) + 1.0s) infinite alternate;
+  }
+  
+  /* Staggered delays for natural effect */
+  #stars circle:nth-of-type(odd) {
+    animation-delay: calc(var(--svg-load-delay) + 1.4s);
+  }
+  
+  #stars circle:nth-of-type(even) {
+    animation-delay: calc(var(--svg-load-delay) + 1.8s);
+  }
+  

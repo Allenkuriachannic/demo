@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animations | Kapil Dev Singh</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="projects">
+    <!-- NAVBAR  -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">KDS</a>
+  
+       
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="toggle navigation">☰</label>
+  
+        <ul class="nav-links">
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li>
+            <button popovertarget="contact-popover" class="btn-nav">Contact</button>
+          </li>
+        </ul>
+      </nav>
+
+      <header>
+        <h1>Animation Showcase</h1>
+        <h2>Three shape studies using clip-mask, filter, and blend-mode </h2>
+      </header>
+      <main>
+        <section class="anim-grid">
+            <!-- Cell 1 — CLIP/MASK -->
+            <div class="anim-cell cell-1" >
+              <div class="stage">
+                <div class="mask-orb"></div>
+              </div>
+              <h3>Clip / Mask</h3>
+              <p>Soft moving light revealed through a circular mask.</p>
+            </div>
+
+             <!-- Cell 2 — FILTER -->
+        <div class="anim-cell cell-2" >
+            <div class="stage">
+              <div class="blur-blob"></div>
+              <div class="blur-blob b2"></div>
+            </div>
+            <h3>Filter</h3>
+            <p>Blur + hue drift for a dreamy, tactile feel.</p>
+          </div>
+        
+          <div class="anim-cell cell-3" >
+            <div class="stage">
+              <div class="blend-ring r1"></div>
+              <div class="blend-ring r2"></div>
+              <div class="blend-ring r3"></div>
+            </div>
+            <h3>Blend Mode</h3>
+            <p>Overlapping rings with <code>mix-blend-mode</code> screen.</p>
+          </div>
+          </section>
+
+          <section>
+            <a href="projects.html" class="btn-nav">← Back to Projects</a>
+          </section>
+        </main>
+            <!-- CONTACT POPOVER -->
+  <div id="contact-popover" popover="manual">
+    <button popovertarget="contact-popover" popovertargetaction="hide" class="close-btn">✕</button>
+
+    <div class="contact-container">
+      <img src="images/Kapil_Dev_Singh.png" alt="Photo of Kapil Dev Singh" class="contact-photo">
+      
+      <div class="contact-info">
+        <h3>Kapil Dev Singh</h3>
+        <p class="bio">
+          I’m a graphic designer and content creator passionate about storytelling through visuals, sound, and travel-inspired design.
+        </p>
+        <p><strong>Email:</strong> ksingh79@northislandcollege.ca<br>
+           <strong>Phone:</strong> (236)-882-1376</p>
+      </div>
+    </div>
+  </div>
+
+      
+</body>
+</html>
